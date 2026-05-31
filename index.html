@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio | PhD Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+        }
+        
+        .hero-desc {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-desc {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .about-contact {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+        
+        /* Publications Section */
+        .publications {
+            background: var(--light);
+        }
+        
+        .pub-list {
+            list-style: none;
+        }
+        
+        .pub-item {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .pub-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pub-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .pub-authors {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .pub-journal {
+            margin-bottom: 10px;
+            color: #777;
+        }
+        
+        .pub-links a {
+            margin-right: 15px;
+            font-weight: 600;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            height: 200px;
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .project-desc {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        /* Teaching Section */
+        .teaching {
+            background: var(--light);
+        }
+        
+        .courses-list {
+            list-style: none;
+        }
+        
+        .course-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .course-info {
+            flex: 2;
+        }
+        
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .course-term {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .course-link {
+            flex: 1;
+            text-align: right;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .footer-about {
+            flex: 2;
+            padding-right: 30px;
+        }
+        
+        .footer-links {
+            flex: 1;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-about {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                height: calc(100vh - 80px);
+                padding: 40px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: 0.4s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Academic<span>Portfolio</span></a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#teaching" class="nav-link">Teaching</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Sabrina Karboua</h1>
+                <h2 class="hero-subtitle">PhD in Data, text, and web mining</h2>
+                <p class="hero-desc"> Ph.D. Candidate in Computer Science specializing in web and text data mining. My work is centered on developing fairness-enhancing features and bias mitigation strategies for intelligent decision systems, with a focus on LLMs, NLP, and Recommendation Systems</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-desc">I am a Computer Science Ph.D. candidate researching how to build fairness into intelligent systems. My work bridges natural language processing and recommendation systems, focusing on novel techniques to detect and mitigate algorithmic bias.</p>
+                    <p class="about-desc">I hold a Master's degree in Information Systems and Software Engineering from the University of Bouira, which equipped me with a strong engineering foundation for designing complex systems"</p>
+                 
+                    <p class="about-desc">When I am not teaching or researching, I actively explore the cutting edge of technology. My personal curiosity is particularly focused on the rapid evolution of Large Language Models and their expanding capabilities.</p>
+                </div>
+                <div class="about-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p>sabrina.karboua@univ-setif.dz</p>
+                        </div>
+                    </div>
+                
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p>Department of Computer Science<br>University of Ferhat Abbas, Setif1</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/sabrinakba" class="social-icon"><i class="fa-brands fa-github"></i></a>
+
+                        <a href="https://www.linkedin.com/in/sabrina-karboua-5b6a49137/" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                      	<a href="https://scholar.google.com/citations?user=6H4PQtMAAAAJ&hl=en" class="social-icon" style="font-weight:700; color:#4285F4; font-size:1rem;">G</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="section publications" id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <ul class="pub-list">
+
+		<li class="pub-item">
+                    <h3 class="pub-title">ORAF: An orthogonal regularization-based adversarial learning framework for achieving two-sided fairness in recommender systems. </h3>
+                    <p class="pub-authors">Karboua, S., Harrag, F., Meziane, F, & Deriche, M.</p>
+                    <p class="pub-journal">Scientific Reports (2026, June).</p>
+                    <div class="pub-links">
+                       
+			<a href="https://doi.org/10.1038/s41598-026-53611-3" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                  </div>
+                  </li>
+
+               <li class="pub-item">
+                    <h3 class="pub-title"> Dual-Sided Fair Recommendation via Variational Disentanglement</h3>
+                    <p class="pub-authors">Karboua, S., Harrag, F., Meziane, F, & Deriche, M.</p>
+                    <p class="pub-journal">5th International Conference on Artificial Intelligence Science and Applications in Industry and Society, Ajman University, UAE. (CAISAIS 2026) (Accepted)</p>
+                    <div class="pub-links">
+                       
+			<a href="https://caisais26.ajman.ac.ae/en" target="_blank"><i class="fas fa-external-link-alt"></i> Conference link</a>
+
+                    </div>
+                    </li>
+
+ <li class="pub-item">
+                    <h3 class="pub-title"> A Dual-Adversarial Learning Framework with Explicit Constraints for Two-Sided Fairness in Recommendation System</h3>
+                    <p class="pub-authors">Karboua, S., Harrag, F., Meziane, F, & Deriche, M.</p>
+                    <p class="pub-journal">Open Information Science</p>
+                    <div class="pub-links">
+                       
+			<a href="https://www.degruyterbrill.com/document/doi/10.1515/opis-2025-0043/html?utm_source=researchgate.net&utm_medium=article" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+
+                    </div>
+                    </li>
+		
+           
+ <li class="pub-item">
+                    <h3 class="pub-title"> Mitigation Bias and Ensuring Fairness in LLM-based Recommendation Systems: A systematic Literature Review (under review)</h3>
+                    <p class="pub-authors">Karboua, S., Harrag, F., Meziane, F, & Deriche, M.</p>
+                    <p class="pub-journal">Information Processing & Management</p>
+                    <div class="pub-links">
+                       
+			
+
+                    </div>
+                    </li>
+                <li class="pub-item">
+                    <h3 class="pub-title"> Detecting Human-to-AI Author Change in Arabic Text. </h3>
+                    <p class="pub-authors">Boutadjine, A., Harrag, F., Bensouilah, M., Karboua, S., & Deriche, M. </p>
+                    <p class="pub-journal">IEEE 22nd International Multi-Conference on Systems, Signals & Devices (SSD) (pp. 348-353). IEEE (2025, February).</p>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/10989918" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                    </div>
+                </li>
+		<li class="pub-item">
+                    <h3 class="pub-title">Multi-Head Self-Attention Based Arabic News Recommendation System   </h3>
+                    <p class="pub-authors">Sabrina, K., Harrag, F., & Meziane, F.  </p>
+                    <p class="pub-journal">In 2024 International Conference on Advanced Aspects of Software Engineering (ICAASE) (pp. 1-8). IEEE.</p>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/10851019" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                    </div>
+                </li>
+		<li class="pub-item">
+                    <h3 class="pub-title">A comprehensive study on multimedia Deep Fakes. </h3>
+                    <p class="pub-authors">Amel Boutadjine, Fouzi Harrag, Khaled Shaalan, Sabrina Karboua   </p>
+                    <p class="pub-journal">International Conference on Advances in Electronics, Control and Communication Systems (ICAECCS) (pp. 1-6). IEEE.  </p>
+                    <div class="pub-links">
+                        <a href="https://ieeexplore.ieee.org/document/10104814" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                    </div>
+                </li>
+		<li class="pub-item">
+                    <h3 class="pub-title">Mitigation of Popularity Bias in Recommendation Systems.   </h3>
+                    <p class="pub-authors">Sabrina Karboua, Fouzi Harrag, Farid Meziane, Amel Boutadjine </p>
+                    <p class="pub-journal"> Tunisian-Algerian Joint Conference on Applied Computing. (2022, December)  </p>
+                    <div class="pub-links">
+                        <a href="https://ceur-ws.org/Vol-3333/Paper7.pdf" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                    </div>
+                </li>
+                 <li class="pub-item">
+                    <h3 class="pub-title">A Deep Learning and Transfer Learning-Based Application for Skin Cancer Classification. </h3>
+                    <p class="pub-authors">Karboua, S., Harrag, F., Karboua, S., Booutadjine, A., & Deriche, M.</p>
+                    <p class="pub-journal">IEEE 22nd International Multi-Conference on Systems, Signals & Devices (SSD) (pp. 745-750). IEEE. (2025, February).</p>
+                    <div class="pub-links">
+                       
+			<a href="https://ieeexplore.ieee.org/document/10989930" target="_blank"><i class="fas fa-external-link-alt"></i> PDF</a>
+                        
+                        
+                 </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Research Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Multi-Head Self-Attention Based Arabic News Recommendation System</h3>
+                        <p class="project-desc">Developping an Arabic news recommendation system that utilizes multi-head self-attention to effectively model user interests and news content. The model captures complex textual relationships within news articles to provide personalized and accurate recommendations for Arabic readers.</p>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title"> Automatic Multi-Document Text Summarization</h3>
+                        <p class="project-desc">The project aim to automatically summarize long articles, documents into key summary paragraphs using Python, NLP algorithms and Django framework</p>
+                        <a href="https://github.com/sabrinakba/code-source" class="btn">View Project</a>
+			<a href="https://github.com/sabrinakba/django-application" class="btn">View Application Code</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title"> Med Quiz Mobile Application </h3>
+                        <p class="project-desc">DevelopPING Med Quiz mobile application to help medical student revise their lessons using Java, android studio and SQLite.</p>
+                        <a href="https://github.com/sabrinakba/MedQuiz" class="btn">View Project</a>
+                    </div>
+	   </div>
+               <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+			<div class="project-content">
+                        <h3 class="project-title"> AI Healthcare (Skin Cancer) </h3>
+                        <p class="project-desc">A mobile application that integrates a deep learning algorithm to automatically analyze skin lesion photos and provide an instant, preliminary assessment of skin cancer risk.</p>
+                        <a href="https://github.com/sabrinakba/A-Deep-Learning-and-Transfer-Learning-Based-Application-for-Skin-Cancer-Classification." class="btn">View Project</a>
+                    </div>
+	    </div>  
+                </div>
+          
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section class="section teaching" id="teaching">
+        <div class="container">
+            <h2 class="section-title">Teaching</h2>
+            <ul class="courses-list">
+	     <li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">ALGORITHMS AND DATA STRUCTURES/ C language. Bachelor's class (L1)</h3>
+			<p class="course-term">Workshop sessions</p>
+                        <p class="course-term">September 2025-JuNE 2026</p>
+			<p class="course-term">University of Abdelhamid Mehri, Constantine 2, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/ASD1-ASD2" class="btn">Course Materials</a>
+                    </div>
+                </li>
+		<li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Advanced Database Management. Master's class (M1) </h3>
+			<p class="course-term"> Tutorial sessions</p>
+                        <p class="course-term">October 2025 - January2025</p>
+			<p class="course-term">Ferhat Abbas, Setif1 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/DATABASE-MANAGEMENT-MASTER1" class="btn">Course Materials</a></div></li>
+		<li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Advanced ALGORITHMS AND DATA STRUCTURES. Bachelor's class (L2) </h3>
+			<p class="course-term"> Tutorial sessions</p>
+                        <p class="course-term">October 2025 - January2025</p>
+			<p class="course-term">Ferhat Abbas, Setif1 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/Advanced-ADS-L2" class="btn">Course Materials</a></div></li>
+                <li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Introduction to Biomedical Data Analysis + IBM SPSS.  (Medicine, 1st Year)</h3>
+			<p class="course-term">Assistant teacher_ course + practical sessions</p>
+                        <p class="course-term">September 2024-July 2025</p>
+			<p class="course-term">Salah Boubnider, Constantine 3 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/Introduction-to-Biomedical-Data-Analysis-IBM-SPSS" class="btn">Course Materials</a>
+                    </div>
+                </li>
+		<li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">ALGORITHMS AND DATA STRUCTURES/ C++ language. (Bachelor, L1) </h3>
+			<p class="course-term">Assistant teacher_ Tutorial + practical sessions</p>
+                        <p class="course-term">Septemeber 2023 - June 2024</p>
+			<p class="course-term">Ferhat Abbas, Setif1 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/ASD" class="btn">Course Materials</a></div></li>
+                <li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Database Management. (Bachelor 2)  </h3>
+                        <p class="course-term">September 2022 - Febrauary 2023</p>
+			<p class="course-term">Assistant teacher_Tutorial + practical sessions</p>
+			<p class="course-term">Salah Boubnider, Constantine 3 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/Base-des-don-es" class="btn">Course Materials</a>
+                    </div>
+                </li>
+		<li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Graph Theory. (Bachelor L2)  </h3>
+			<p class="course-term">Assistant teacher_ Tutorial sessions</p>
+                        <p class="course-term">September 2022-Febrauary 2023</p>
+			<p class="course-term">Salah Boubnider, Constantine 3 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/Graph-theory" class="btn">Course Materials</a>
+                    </div>
+                </li>
+		
+                <li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Imperative Programming in FORTRAN. (Bachelor L1) </h3>
+			<p class="course-term">Assistant teacher_ practical sessions</p>
+                        <p class="course-term">Mars2022 - June 2022</p>
+			<p class="course-term">Ferhat Abbas, Setif1 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/FORTRAN" class="btn">Course Materials</a>
+			
+                    </div>
+                </li>
+		<li class="course-item">
+                    <div class="course-info">
+                        <h3 class="course-title">Microsoft Office (Word, Excel, PowerPoint)(Bachelor L1) </h3>
+			<p class="course-term">Assistant teacher_practical sessions</p>
+                        <p class="course-term">October 2021- February 2022 </p>
+			<p class="course-term">Ferhat Abbas, Setif1 University, Algeria</p>
+                    </div>
+                    <div class="course-link">
+                        <a href="https://github.com/sabrinakba/Microsoft-Office-Course" class="btn">Course Materials</a>
+			
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3 class="footer-logo">Academic Portfolio</h3>
+                    <p>This portfolio website showcases my research, publications, projects, and teaching experience. Feel free to reach out for collaborations or inquiries.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/sabrinakba" class="social-icon"><i class="fa-brands fa-square-github"></i></a>
+
+                        <a href="https://www.linkedin.com/in/sabrina-karboua-5b6a49137/" class="social-icon"><i class=""></i></a>
+                       
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+			<a href="https://scholar.google.com/citations?user=6H4PQtMAAAAJ&hl=en" class="social-icon"><i class="fa-brands fa-google-scholar" style="color: #FFD43B;"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#projects">Research Projects</a></li>
+                        <li><a href="#teaching">Teaching</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sabrina Karboua. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
